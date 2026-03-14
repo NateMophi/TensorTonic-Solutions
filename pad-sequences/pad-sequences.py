@@ -23,3 +23,5 @@ def pad_sequences(seqs, pad_value=0, max_len=None):
         while len(s) > L:
             s.pop()
     return np.array(seqs)
+
+# InEfficient Solution I'm suspecting...

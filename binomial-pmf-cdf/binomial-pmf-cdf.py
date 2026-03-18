@@ -5,9 +5,7 @@ def binomial_pmf_cdf(n, p, k):
     """
     Compute Binomial PMF and CDF.
     """
-    # Write code here
-    
-    
+    # Write code here    
     pmf = np.dot(np.dot(comb(n, k), p**k), (1-p)**(n-k))
     cdf = 0
     for i in range(k+1):

@@ -1,13 +1,4 @@
 import numpy as np
-
-def clip_gradients(g, max_norm):
-    """
-    Clip gradients using global norm clipping.
-    """
-    # Write code here
-
-    import numpy as np
-
 def clip_gradients(g, max_norm):
     """
     Clip gradients using global norm clipping.

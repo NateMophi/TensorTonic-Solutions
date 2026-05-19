@@ -5,11 +5,10 @@ def expected_value_discrete(x, p):
     Returns: float expected value
     """
     # Write code here
-    n = len(x)
-    E = []
-    for i in range (0, n):
-        E .append(x[i]*p[i])
-
-    if sum(p)!= 1:
+    x, p = np.array(x), np.array(p)
+    if x.shape!=p.shape:
         raise ValueError
-    return sum(E)
+    if np.sum(p)!=1:
+        raise ValueError
+    E = np.sum(x*p)
+    return E

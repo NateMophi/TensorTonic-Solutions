@@ -8,8 +8,7 @@ def zscore_standardize(X, axis=0, eps=1e-12):
     # Write code here
     mean = np.mean(X, axis=axis, keepdims=True)
     std = np.std(X, axis=axis, keepdims=True)
-    std = np.maximum(std, eps)
-    z = (X - mean)/std 
-
-    return z 
-    
+   
+    # std = np.where(std==0, std+eps, std)
+    z = (X - mean)/(std+eps)
+    return np.array(z)

@@ -7,6 +7,6 @@ def sample_var_std(x):
     # Write code here
     x = np.array(x)
     n = len(x)
-    mean = np.mean(x)
-    variance = 1/(n-1) * np.sum((x - mean)**2)
-    return variance, np.sqrt(variance)
+    x_bar = np.mean(x)
+    var = (1/(n-1)) * np.sum((x - x_bar)**2)
+    return var, var**0.5

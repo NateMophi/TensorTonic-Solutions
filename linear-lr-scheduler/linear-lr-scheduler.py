@@ -4,9 +4,7 @@ def linear_lr(step, total_steps, initial_lr, final_lr=0.0, warmup_steps=0) -> fl
     Steps are 0-based; clamp at final_lr after total_steps.
     """
     t = step
-    if t>total_steps:
-        return final_lr
-    if t == total_steps:
+    if t>total_steps or t == total_steps:
         return final_lr
 
     while t<total_steps:

@@ -12,5 +12,4 @@ def compute_advantage(states, rewards, V, gamma):
     for t in range(n-2, -1, -1):
         G[t] = rewards[t] + G[t+1]*gamma
     G = np.array(G)
-    A = G - V
-    return A
+    return G - V

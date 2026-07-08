@@ -1,4 +1,3 @@
-import numpy as np
 def rating_normalization(matrix):
     """
     Mean-center each user's ratings in the user-item matrix.

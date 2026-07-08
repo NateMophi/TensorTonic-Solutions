@@ -7,9 +7,6 @@ def baseline_predict(ratings_matrix, target_pairs):
     non_zero_ratings = [val for user in ratings_matrix for val in user if val!=0]
     non_zero_user_ratings = [[val for val in user if val!=0] for user in ratings_matrix]
     
-    if not non_zero_ratings:
-        return [0]*len(target_pairs)
-    
     global_mean = sum(non_zero_ratings)/len(non_zero_ratings)
     non_zero_user_ratings = [[val for val in user if val!=0] for user in ratings_matrix]
     non_zero_item_ratings = [[val for val in user if val!=0] for user in zip(*ratings_matrix)]

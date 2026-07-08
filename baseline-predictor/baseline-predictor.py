@@ -14,19 +14,18 @@ def baseline_predict(ratings_matrix, target_pairs):
     non_zero_user_ratings = [[val for val in user if val!=0] for user in ratings_matrix]
     non_zero_item_ratings = [[val for val in user if val!=0] for user in zip(*ratings_matrix)]
 
-    # user_means = [sum(rating)/len(rating) for rating in non_zero_user_ratings]
-    # item_means = [sum(rating)/len(rating) for rating in non_zero_item_ratings]
+    user_means = [sum(rating)/len(rating) for rating in non_zero_user_ratings]
+    item_means = [sum(rating)/len(rating) for rating in non_zero_item_ratings]
 
-    user_biases = [(sum(ratings) / len(ratings) - global_mean) if ratings else 0 for ratings in non_zero_user_ratings
-    ]
+    # user_biases = [(sum(ratings) / len(ratings) - global_mean) if ratings else 0 for ratings in non_zero_user_ratings
+    # ]
 
-    item_biases = [(sum(ratings) / len(ratings) - global_mean) if ratings else 0 for ratings in non_zero_item_ratings
-    ]
+    # item_biases = [(sum(ratings) / len(ratings) - global_mean) if ratings else 0 for ratings in non_zero_item_ratings
+    # ]
     
     for u, i in target_pairs:
-        # b_u, b_i = user_means[u] - global_mean, item_means[i] - global_mean
-        # r = global_mean + b_u + b_i 
-        r = global_mean + user_biases[u] + item_biases[i]
+        b_u, b_i = user_means[u] - global_mean, item_means[i] - global_mean
+        r = global_mean + b_u + b_i 
         Bias.append(r)
     return Bias
                 

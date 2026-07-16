@@ -4,10 +4,5 @@ def xavier_initialization(W, fan_in, fan_out):
     """
     # Write code here
     L = (6/(fan_in+fan_out))**0.5
-    X = []
-    for weight in W:
-        W_prime = []
-        for val in weight:
-            W_prime.append(val*2*L-L)
-        X.append(W_prime)
+    X = [[val*2*L-L for val in weight] for weight in W]
     return X

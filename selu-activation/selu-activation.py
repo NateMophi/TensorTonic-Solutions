@@ -7,5 +7,5 @@ def selu(x, lam=1.0507009873554804934193349852946, alpha=1.673263242354377284817
     """
     # Write code here
     x = np.array(x)
-    SELU = np.where(x > 0, lam*x, lam*alpha * (np.exp(x) -1) )
-    return SELU
+    S = np.where(x>0, lam*x, lam*alpha*(np.exp(x)-1))
+    return S

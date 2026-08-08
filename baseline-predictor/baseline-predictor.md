@@ -70,11 +70,13 @@ A better approach alternates between estimating user and item biases:
 **Iterate until convergence:**
 
 1. Update item biases:
+
 $$
 b_i = \frac{\sum_{u \in U_i} (r_{ui} - \mu - b_u)}{|U_i|}
 $$
 
 2. Update user biases:
+
 $$
 b_u = \frac{\sum_{i \in I_u} (r_{ui} - \mu - b_i)}{|I_u|}
 $$
@@ -118,26 +120,31 @@ $$
 **Step 2: Simple bias calculation**
 
 User A: Items rated = {1, 2}, ratings = {5, 4}
+
 $$
 b_A = \frac{(5-3.6) + (4-3.6)}{2} = \frac{1.4 + 0.4}{2} = 0.9
 $$
 
 User B: Items rated = {1, 2}, ratings = {3, 2}
+
 $$
 b_B = \frac{(3-3.6) + (2-3.6)}{2} = \frac{-0.6 + (-1.6)}{2} = -1.1
 $$
 
 User C: Items rated = {1}, rating = {4}
+
 $$
 b_C = \frac{4-3.6}{1} = 0.4
 $$
 
 Item 1: Users = {A, B, C}, ratings = {5, 3, 4}
+
 $$
 b_1 = \frac{(5-3.6) + (3-3.6) + (4-3.6)}{3} = \frac{1.4 - 0.6 + 0.4}{3} = 0.4
 $$
 
 Item 2: Users = {A, B}, ratings = {4, 2}
+
 $$
 b_2 = \frac{(4-3.6) + (2-3.6)}{2} = \frac{0.4 - 1.6}{2} = -0.6
 $$
@@ -145,6 +152,7 @@ $$
 **Step 3: Baseline prediction**
 
 Predict User C's rating for Item 2:
+
 $$
 b_{C,2} = \mu + b_C + b_2 = 3.6 + 0.4 + (-0.6) = 3.4
 $$

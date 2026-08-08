@@ -2,7 +2,6 @@ def baseline_predict(ratings_matrix, target_pairs):
     """
     Compute baseline predictions using global mean and user/item biases.
     """
-    # Write code here
     non_zero_user_ratings = [[rating for rating in ratings if rating!=0] for ratings in ratings_matrix]
     non_zero_item_ratings = [[rating for rating in ratings if rating!=0] for ratings in zip(*ratings_matrix)]
     mu = sum([sum(rating)/len(rating) for rating in non_zero_user_ratings])/len(non_zero_user_ratings)

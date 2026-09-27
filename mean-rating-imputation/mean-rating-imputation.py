@@ -1,27 +1,21 @@
-def mean_rating_imputation(ratings_matrix, mode):
+def mean_rating_imputation(ratings_matrix: list, mode: str) -> list:
     """
-    Fill missing ratings (zeros) with user or item means.
+    Returns a copy with missing ratings replaced by user or item means.
     """
-    # Write code here
     R = ratings_matrix.copy()
-    user_ratings = [[rating for rating in ratings if rating!=0] for ratings in ratings_matrix]
-    item_ratings = [[rating for rating in ratings if rating!=0] for ratings in zip(*ratings_matrix)]
-    
-    rows, cols = len(R), len(R[0])
+    non_zero_user_ratings = [[val for val in ratings if val!=0] for ratings in ratings_matrix]
+    non_zero_item_ratings = [[val for val in ratings if val!=0] for ratings in zip(*ratings_matrix)]
+
+    rows, cols = len(ratings_matrix),len(ratings_matrix[0])
     if mode=="user":
         for i in range(rows):
-            if len(user_ratings[i])==0:
-                continue
-            m = sum(user_ratings[i])/len(user_ratings[i])
             for j in range(cols):
-                if R[i][j]==0:
-                    R[i][j]=m
+                if R[i][j]==0 and len(non_zero_user_ratings[i])!=0:
+                    R[i][j] = sum(non_zero_user_ratings[i])/len(non_zero_user_ratings[i])
     if mode=="item":
-        for j in range(cols):
-            if len(item_ratings[j])==0:
-                continue
-            m = sum(item_ratings[j])/len(item_ratings[j])
-            for i in range(cols):
-                if R[i][j]==0:
-                    R[i][j]=m
+        for i in range(rows):
+            for j in range(cols):
+                if R[i][j]==0 and len(non_zero_item_ratings[j])!=0:
+                    R[i][j] = sum(non_zero_item_ratings[j])/len(non_zero_item_ratings[j])
+                # if R[i][j]==0 and len(non_zero_item_ratings)==0:
     return R

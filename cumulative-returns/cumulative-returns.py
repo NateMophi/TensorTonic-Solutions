@@ -1,12 +1,12 @@
-def cumulative_returns(returns):
+def cumulative_returns(returns: list) -> list:
     """
-    Compute the cumulative return at each time step.
+    Returns the compounded cumulative return after every period.
     """
     # Write code here
-    t = len(returns)
-    C = []
-    W_t = 1
-    for i in range(t):
-        W_t*= (1+returns[i])
-        C.append(W_t-1)
-    return C
+    n = len(returns)
+    W = 1
+    R = []
+    for t in range(n):
+        W = W*(1+returns[t])
+        R.append(W-1)
+    return R

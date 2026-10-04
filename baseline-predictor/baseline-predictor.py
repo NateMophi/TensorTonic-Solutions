@@ -1,11 +1,16 @@
-def baseline_predict(ratings_matrix, target_pairs):
+def baseline_predict(ratings_matrix: list, target_pairs: list) -> list:
     """
-    Compute baseline predictions using global mean and user/item biases.
+    Returns the baseline predictions for the requested user-item pairs.
     """
-    non_zero_user_ratings = [[rating for rating in ratings if rating!=0] for ratings in ratings_matrix]
-    non_zero_item_ratings = [[rating for rating in ratings if rating!=0] for ratings in zip(*ratings_matrix)]
-    mu = sum([sum(rating)/len(rating) for rating in non_zero_user_ratings])/len(non_zero_user_ratings)
-    UB = [(sum(rating)/len(rating))- mu for rating in non_zero_user_ratings]
-    IB = [(sum(rating)/len(rating))- mu for rating in non_zero_item_ratings]
-    return [mu + UB[u] + IB[i] for u, i in target_pairs]
+    # Write code here
+    non_zero_user_ratings= [[rating for rating in ratings if rating !=0] for ratings in ratings_matrix]
+    non_zero_item_ratings = [[rating for rating in ratings if rating !=0] for ratings in zip(*ratings_matrix)]
+    mu = sum([rating for ratings in ratings_matrix for rating in ratings if rating!=0 ])/len([rating for ratings in ratings_matrix for rating in ratings if rating!=0 ])
+
+    user_means = [sum(rating)/len(rating) if len(rating)!=0 else 0 for rating in non_zero_user_ratings]
+    item_means = [sum(rating)/len(rating) if len(rating)!=0 else 0 for rating in non_zero_item_ratings]
     
+    user_bias = [rating-mu  for rating in user_means]
+    item_bias = [rating-mu  for rating in item_means]
+    R = [mu + user_bias[u] + item_bias[i] for u,i in target_pairs]
+    return R

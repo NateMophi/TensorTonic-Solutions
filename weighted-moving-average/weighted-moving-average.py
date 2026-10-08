@@ -1,12 +1,11 @@
-def weighted_moving_average(values, weights):
+def weighted_moving_average(values: list, weights: list) -> list:
     """
-    Compute the weighted moving average using the given weights.
+    Returns the weighted average of every complete window.
     """
     # Write code here
-    w_sum = sum(weights)
     n, k = len(values), len(weights)
     WMA = [0]*(n-k+1)
     for i in range(n-k+1):
         for j in range(k):
-            WMA[i]+=(weights[j]*values[i+j])/w_sum
+            WMA[i]+= ((weights[j]*values[i+j])) / sum(weights)
     return WMA
